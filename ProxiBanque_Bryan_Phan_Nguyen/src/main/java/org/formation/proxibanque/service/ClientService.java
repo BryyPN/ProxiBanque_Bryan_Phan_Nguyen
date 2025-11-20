@@ -1,0 +1,48 @@
+package org.formation.proxibanque.service;
+
+import org.formation.proxibanque.entity.Card;
+import org.formation.proxibanque.entity.Client;
+import org.formation.proxibanque.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ClientService {
+
+    @Autowired
+    private ClientRepository clientRepository;
+
+    @Autowired
+    private CardService cardService;
+
+    public List<Client> getAllClients() {
+        return clientRepository.findAll();
+    }
+
+    public Optional<Client> getClientById(Long id) {
+        return clientRepository.findById(id);
+    }
+
+    public Client createClient(Client client) {
+        return clientRepository.save(client);
+    }
+
+    @Transactional
+    public void deleteClient(Long id) {
+        Optional<Client> clientOpt = clientRepository.findById(id);
+        if (clientOpt.isPresent()) {
+            Client client = clientOpt.get();
+            if (client.getCards() != null) {
+                for (Card card : client.getCards()) {
+                    card.setActive(false);
+                    cardService.createCard(card);
+                }
+            }
+            clientRepository.deleteById(id);
+        }
+    }
+}

@@ -1,4 +1,4 @@
-package org.formation.proxibanque_bryan_phan_nguyen;
+package org.formation.proxibanque;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package org.formation.proxibanque_bryan_phan_nguyen;
+package org.formation.proxibanque;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
