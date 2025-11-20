@@ -1,0 +1,16 @@
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/ProxiBanqueBryanPhanNguyenApplication.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/controller/AccountController.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/controller/CardController.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/controller/ClientController.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/entity/Account.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/entity/Card.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/entity/CardType.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/entity/Client.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/entity/CurrentAccount.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/entity/SavingAccount.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/repository/AccountRepository.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/repository/CardRepository.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/repository/ClientRepository.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/service/AccountService.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/service/CardService.java
+/Users/hweiyn/Documents/Projets/ProxiBanque_Bryan_Phan_Nguyen/ProxiBanque_Bryan_Phan_Nguyen/src/main/java/org/formation/proxibanque/service/ClientService.java
