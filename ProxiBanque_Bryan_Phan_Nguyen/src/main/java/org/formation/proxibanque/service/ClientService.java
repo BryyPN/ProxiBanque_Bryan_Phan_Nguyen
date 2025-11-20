@@ -51,7 +51,7 @@ public class ClientService {
             if (client.getCards() != null) {
                 for (Card card : client.getCards()) {
                     card.setActive(false);
-                    cardService.createCard(card); // This will update the card
+                    cardService.createCard(card);
                 }
             }
             clientRepository.deleteById(id);
