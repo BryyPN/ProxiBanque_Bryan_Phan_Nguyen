@@ -3,6 +3,7 @@ package org.formation.proxibanque.controller;
 import org.formation.proxibanque.entity.Client;
 import org.formation.proxibanque.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +22,10 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Client> getClientById(@PathVariable Long id) {
-        return clientService.getClientById(id);
+    public ResponseEntity<Client> getClientById(@PathVariable Long id) {
+        return clientService.getClientById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -30,8 +33,19 @@ public class ClientController {
         return clientService.createClient(client);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client clientDetails) {
+        return clientService.updateClient(id, clientDetails)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
-    public void deleteClient(@PathVariable Long id) {
-        clientService.deleteClient(id);
+    public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
+        if (clientService.deleteClient(id)) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

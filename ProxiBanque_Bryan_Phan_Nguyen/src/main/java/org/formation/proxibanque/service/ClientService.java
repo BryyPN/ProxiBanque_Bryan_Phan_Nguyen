@@ -31,18 +31,32 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
+    public Optional<Client> updateClient(Long id, Client clientDetails) {
+        return clientRepository.findById(id).map(client -> {
+            client.setNom(clientDetails.getNom());
+            client.setPrenom(clientDetails.getPrenom());
+            client.setAdresse(clientDetails.getAdresse());
+            client.setCodePostal(clientDetails.getCodePostal());
+            client.setVille(clientDetails.getVille());
+            client.setTelephone(clientDetails.getTelephone());
+            return clientRepository.save(client);
+        });
+    }
+
     @Transactional
-    public void deleteClient(Long id) {
+    public boolean deleteClient(Long id) {
         Optional<Client> clientOpt = clientRepository.findById(id);
         if (clientOpt.isPresent()) {
             Client client = clientOpt.get();
             if (client.getCards() != null) {
                 for (Card card : client.getCards()) {
                     card.setActive(false);
-                    cardService.createCard(card);
+                    cardService.createCard(card); // This will update the card
                 }
             }
             clientRepository.deleteById(id);
+            return true;
         }
+        return false;
     }
 }
