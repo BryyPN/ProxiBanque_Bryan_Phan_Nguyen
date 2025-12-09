@@ -1,8 +1,11 @@
 package org.formation.proxibanque.controller;
 
-import org.formation.proxibanque.entity.Client;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.formation.proxibanque.dto.ClientCreateDto;
+import org.formation.proxibanque.dto.ClientDto;
+import org.formation.proxibanque.dto.ClientUpdateDto;
 import org.formation.proxibanque.service.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,31 +13,31 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/clients")
+@RequiredArgsConstructor
 public class ClientController {
 
-    @Autowired
-    private ClientService clientService;
+    private final ClientService clientService;
 
     @GetMapping
-    public List<Client> getAllClients() {
+    public List<ClientDto> getAllClients() {
         return clientService.getAllClients();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Client> getClientById(@PathVariable Long id) {
+    public ResponseEntity<ClientDto> getClientById(@PathVariable Long id) {
         return clientService.getClientById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Client createClient(@RequestBody Client client) {
-        return clientService.createClient(client);
+    public ClientDto createClient(@RequestBody @Valid ClientCreateDto dto) {
+        return clientService.createClient(dto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client clientDetails) {
-        return clientService.updateClient(id, clientDetails)
+    @PatchMapping("/{id}")
+    public ResponseEntity<ClientDto> updateClient(@PathVariable Long id, @RequestBody @Valid ClientUpdateDto dto) {
+        return clientService.updateClient(id, dto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

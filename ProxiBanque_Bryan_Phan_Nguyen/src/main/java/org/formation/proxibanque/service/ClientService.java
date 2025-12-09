@@ -1,9 +1,13 @@
 package org.formation.proxibanque.service;
 
+import lombok.RequiredArgsConstructor;
+import org.formation.proxibanque.dto.ClientCreateDto;
+import org.formation.proxibanque.dto.ClientDto;
+import org.formation.proxibanque.dto.ClientUpdateDto;
 import org.formation.proxibanque.entity.Card;
 import org.formation.proxibanque.entity.Client;
+import org.formation.proxibanque.mapper.ClientMapper;
 import org.formation.proxibanque.repository.ClientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,35 +15,35 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ClientService {
 
-    @Autowired
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
+    private final CardService cardService;
+    private final ClientMapper clientMapper;
 
-    @Autowired
-    private CardService cardService;
-
-    public List<Client> getAllClients() {
-        return clientRepository.findAll();
+    public List<ClientDto> getAllClients() {
+        return clientRepository.findAll().stream()
+                .map(clientMapper::toDto)
+                .toList();
     }
 
-    public Optional<Client> getClientById(Long id) {
-        return clientRepository.findById(id);
+    public Optional<ClientDto> getClientById(Long id) {
+        return clientRepository.findById(id)
+                .map(clientMapper::toDto);
     }
 
-    public Client createClient(Client client) {
-        return clientRepository.save(client);
+    public ClientDto createClient(ClientCreateDto dto) {
+        Client entity = clientMapper.toEntity(dto);
+        Client saved = clientRepository.save(entity);
+        return clientMapper.toDto(saved);
     }
 
-    public Optional<Client> updateClient(Long id, Client clientDetails) {
+    @Transactional
+    public Optional<ClientDto> updateClient(Long id, ClientUpdateDto dto) {
         return clientRepository.findById(id).map(client -> {
-            client.setNom(clientDetails.getNom());
-            client.setPrenom(clientDetails.getPrenom());
-            client.setAdresse(clientDetails.getAdresse());
-            client.setCodePostal(clientDetails.getCodePostal());
-            client.setVille(clientDetails.getVille());
-            client.setTelephone(clientDetails.getTelephone());
-            return clientRepository.save(client);
+            clientMapper.updateEntity(client, dto);
+            return clientMapper.toDto(client);
         });
     }
 
